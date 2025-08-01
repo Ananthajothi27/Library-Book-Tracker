@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Library Book Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #4a90e2;
+      padding: 15px;
+      color: white;
+      text-align: center;
+    }
+
+    main {
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+
+    form input, form select {
+      padding: 8px;
+      margin: 5px;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .form-group {
+      margin-bottom: 10px;
+    }
+
+    button {
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #357abd;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>📚 Library Book Tracker</h1>
+  </header>
+
+  <main>
+    <h2>Add New Book</h2>
+    <form id="bookForm">
+      <div class="form-group">
+        <input type="text" id="title" placeholder="Book Title" required>
+      </div>
+      <div class="form-group">
+        <input type="text" id="author" placeholder="Author Name" required>
+      </div>
+      <div class="form-group">
+        <select id="genre">
+          <option value="">-- Select Genre --</option>
+          <option value="Fiction">Fiction</option>
+          <option value="Non-fiction">Non-fiction</option>
+          <option value="Sci-Fi">Sci-Fi</option>
+          <option value="Mystery">Mystery</option>
+          <option value="Biography">Biography</option>
+        </select>
+      </div>
+      <button type="submit">Add Book</button>
+    </form>
+
+    <h2>📖 Book List</h2>
+    <table id="bookTable">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Genre</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Book entries will appear here -->
+      </tbody>
+    </table>
+  </main>
+
+  <script>
+    const bookForm = document.getElementById("bookForm");
+    const bookTable = document.getElementById("bookTable").querySelector("tbody");
+
+    bookForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const title = document.getElementById("title").value;
+      const author = document.getElementById("author").value;
+      const genre = document.getElementById("genre").value;
+
+      if (title && author && genre) {
+        const row = bookTable.insertRow();
+        row.innerHTML = `
+          <td>${title}</td>
+          <td>${author}</td>
+          <td>${genre}</td>
+        `;
+
+        bookForm.reset();
+      }
+    });
+  </script>
+
+</body>
+</html>
